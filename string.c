@@ -23,6 +23,6 @@ int main()
 
         printf("LastNumber = %c", lastName[j]);
     }
-    printf("\n");
+
     return 0;
 }
