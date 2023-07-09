@@ -1,28 +1,21 @@
 #include <stdio.h>
-#include <stralign.h>
 
 int main()
 {
-    char firstName[10];
-    char lastName[10];
-
-    printf("Enter string 1 :");
-    scanf("%c", &firstName);
-
-    printf("Enter string 2 :");
-    scanf("%c", &lastName);
+    char firstName[] = "hii";
+    char lastName[] = "hellow";
 
     for (int i = 0; firstName[i] != '\0'; i++)
     {
 
-        printf("fristName = %c", firstName[i]);
+        printf(" %c", firstName[i]);
     }
-
+    printf("\n");
     for (int j = 0; lastName[j] != '\0'; j++)
     {
 
-        printf("LastNumber = %c", lastName[j]);
+        printf(" %c", lastName[j]);
     }
-
+    printf("\n");
     return 0;
 }
