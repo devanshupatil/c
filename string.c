@@ -11,6 +11,7 @@ int main()
         printf(" %c", firstName[i]);
     }
     printf("\n");
+
     for (int j = 0; lastName[j] != '\0'; j++)
     {
 
