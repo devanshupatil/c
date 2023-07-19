@@ -3,13 +3,13 @@
 
 float Square(float Number);
 float rectangle(float length, float width);
-float circle(float area);
+float circle(float radius);
 
 int main()
 {
     float Number;
     float length, width;
-    float area;
+    float radius;
 
     printf("Enter side of square :");
     scanf("%f", &Number);
@@ -25,9 +25,9 @@ int main()
     printf("The area of a rectangle = %f \n", rectangle(length, width));
 
     printf("Enter redius of circle :");
-    scanf("%f", &area);
+    scanf("%f", &radius);
 
-    printf("The area of circle = %f \n", circle(area));
+    printf("The area of circle = %f \n", circle(radius));
 }
 
 float Square(float Number)
@@ -40,7 +40,7 @@ float rectangle(float length, float width)
     return length * width;
 }
 
-float circle(float area)
+float circle(float radius)
 {
-    return 3.1414592653 * area * area;
+    return 3.1414592653 * radius * radius;
 }
