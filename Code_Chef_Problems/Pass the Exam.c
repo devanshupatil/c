@@ -23,7 +23,7 @@ int main(void)
 
             else
             {
-                printf("FALI \n"); // If false , print 'FAIL'
+                printf("FAIL \n"); // If false , print 'FAIL'
             }
         }
 
