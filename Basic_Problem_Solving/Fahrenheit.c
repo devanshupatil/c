@@ -4,18 +4,19 @@ float ConvertTemp(float celsius);
 
 int main()
 {
-    float far = ConvertTemp(0);
+    float celsius;
 
-    // printf("Enter number :");
-    // scanf("%f", &celsius);
+    printf("Enter number :");
+    scanf("%f", &celsius);
 
-    printf("far = %f", far);
+    printf("far = %f", ConvertTemp(celsius));
 
     return 0;
 }
 
-float ConvertTamp(float celsius)
+float ConvertTemp(float celsius)
 {
+
     float far = celsius * (9 / 5) + 32;
 
     return far;
