@@ -2,7 +2,7 @@
 
 int Hot_Cold(int n); // Function declaration
 
-int main() // Functiom call
+int main() // Function call
 {
     int n;
 
