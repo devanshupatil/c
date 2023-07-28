@@ -21,7 +21,7 @@ int main(void)
         }
         else
         {
-            printf("Charile \n"); // If false , print 'Charile'
+            printf("Charlie \n"); // If false , print 'Charile'
         }
     }
     return 0; // Exit the program
