@@ -18,21 +18,9 @@ int main()
     printf("Enter number of teams :");
     scanf("%d", &TotalTeams);
 
-    Factorial = TotalTeams; // Assigning the value
+    TotalMatch = TotalTeams * (TotalTeams - 1); // Multiplying the total teams and total teams - 1
 
-    for (int i = 1; i < TotalTeams; i++)
-    {
-        Factorial *= i; // Factorial of Total teams
-    }
-
-    Factorial2 = TotalTeams - 2; // Assigning the value
-
-    for (int j = 1; j < TotalTeams - 2; j++)
-    {
-        Factorial2 *= j; // Factorial of Total teams - 2
-    }
-
-    TotalMatch = (Factorial / Factorial2) / 2; // Calculating the Total match's oraganiz
+    TotalMatch = TotalMatch / 2; // Calculating the total match's oraganiz
 
     printf("Note:- First enter name of team then enter the goal's of team same as second team, Please enter only whole number's. \n");
 
