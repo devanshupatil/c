@@ -41,6 +41,6 @@ int main()
                 printf("Team name is %d : %d Point \n", j, PointDif[j]); // If true , print specific name of teams and point of teams
             }
         }
-
-        return 0; // Exit the program
     }
+    return 0; // Exit the program
+}
