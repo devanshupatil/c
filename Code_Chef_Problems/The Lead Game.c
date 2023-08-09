@@ -2,7 +2,6 @@
 
 int main(void)
 {
-
     int Scoredif[1000] = {0};
     int Scoredif2[1000] = {0};
     int N;      // Denoting the number of round in a game
