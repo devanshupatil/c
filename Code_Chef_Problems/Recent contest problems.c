@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <string.h>
 
-int main(void)
+int main()
 {
-    char arr[100];
+    char string[1000] = {0};
     int T; // Denoting number of test cases
     int N; // List of contest code
     int n;
@@ -20,19 +21,16 @@ int main(void)
 
         for (int j = 0; j < N; j++)
         {
-            scanf("%s", &arr[j]);
+            scanf("%s", string);
 
-            for (int k = 0; k < 100; k++)
+            if (strcmp(string, "START38"))
             {
-                if (arr[k] == 51 && arr[k + 1] == 56)
-                {
-                    count1++;
-                }
+                count1 += 1;
+            }
 
-                if (arr[k] == 49 && arr[k + 1] == 48 && arr[k + 2] == 56)
-                {
-                    count2++;
-                }
+            if (strcmp(string, "LTIMER108"))
+            {
+                count2 += 1;
             }
         }
         printf("%d %d \n", count1, count2);

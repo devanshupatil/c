@@ -11,11 +11,11 @@ int main(void)
     {
         scanf("%d %d", &A, &B);
 
-        if ((100 - A) < 200 * (B * 2)) // If the first store discount is less than secound store discount
+        if ((100 - A) < 200 - (B * 2)) // If the first store discount is less than secound store discount
         {
-            printf("FIRT\n"); // If true , print 'FIRST'
+            printf("FIRST\n"); // If true , print 'FIRST'
         }
-        else if (((100 * A) / 100) - 100 == ((200 * B) / 100) - 200) // If the first store discount is equal to secound store discount
+        else if ((100 - A) == 200 - (B * 2)) // If the first store discount is equal to secound store discount
         {
             printf("BOTH\n"); // If true , print 'BOTH'
         }
