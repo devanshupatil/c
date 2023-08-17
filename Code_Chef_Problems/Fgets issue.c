@@ -12,6 +12,7 @@ int main(void)
     for (int i = 0; i < T; i++)
     {
         scanf("%d", &N);
+        getchar();
 
         for (int j = 0; j < N; j++)
         {
