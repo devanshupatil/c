@@ -37,25 +37,41 @@ int main()
     {
         while (add_day != 0) // If true , add of day is not equal to 0
         {
-            if (c1.month == 12) // If month is equal to 12
+            if (c1.year % 4 == 0) // If leep year
             {
-                if (c1.day == arr[c1.month - 1]) // If true , if day is equal to valid day in month
-                {
-                    c1.year++;    // If true , add by one
-                    c1.month = 1; // If true , assign 1
-                    c1.day = 0;   // If true , assign 0
-                }
+                arr[1] = 29; // If true , in february valid day is 29
             }
-            else if (c1.day == arr[c1.month - 1]) // If day is equal to valid day in month
+
+            if (c1.day == arr[c1.month - 1]) // If day is equal to valid day in month
             {
-                c1.month++; // If true , add by one
-                c1.day = 0; // If true , assign 0
+                if (c1.month == 12) // If true , month id equal to 12
+                {
+                    if (c1.year % 4 == 0) // If true , if leep year is over
+                    {
+                        arr[1] = 28;  // if true , in february valid day is 28
+                        c1.year++;    // if true , in Add year by 1
+                        c1.day = 1;   // if true , Assign 1
+                        c1.month = 1; // if true , Assign 1
+                    }
+                    else
+                    {
+                        c1.year++;    // if false , Add year by 1
+                        c1.day = 1;   // if false , Assign 1
+                        c1.month = 1; // if false , Assign 1
+                    }
+                }
+                else
+                {
+                    c1.month++; // if false , add by 1
+                    c1.day = 1; // if false , Assign 1
+                }
             }
             else
             {
-                c1.day++;  // If false , add by one
-                add_day--; // If false , sudtract by one
+                c1.day++; // If false , add by 1
             }
+
+            add_day--; // Subtract by 1
         }
 
         printf("The added date = %d-%d-%d\n", c1.day, c1.month, c1.year); // If true , print 'Date'
