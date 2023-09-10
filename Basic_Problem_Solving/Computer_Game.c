@@ -9,24 +9,18 @@ struct Items
 
 struct Player
 {
-    char name[100];
+    char name[30];
     int levels;
     int count_Items; // Length of items
     int Maximum_inventory_size;
     struct Items items[100];
 };
 
-void Initialize_Player(struct Player *Player_A, struct Player *Player_B)
+void Initialize_Player(struct Player *Ply)
 {
-    Player_A->count_Items = 0;
-    Player_A->levels = 1;
-    Player_A->Maximum_inventory_size = 10;
-    strcpy(Player_A->name, "Player_A");
-
-    Player_B->count_Items = 0;
-    Player_B->levels = 1;
-    Player_B->Maximum_inventory_size = 10;
-    strcpy(Player_B->name, "Player_B");
+    Ply->count_Items = 0;
+    Ply->levels = 1;
+    Ply->Maximum_inventory_size = 10;
 }
 
 int Add_Item_Inventory(struct Player *player)
@@ -43,7 +37,7 @@ int Add_Item_Inventory(struct Player *player)
     player->count_Items++;
 }
 
-int Remove_Item_From_Inventory(struct Player *Remove)
+int Remove_Item_From_Inventory(struct Player *player)
 {
     char name_remove[30];
     char name[30];
@@ -52,14 +46,14 @@ int Remove_Item_From_Inventory(struct Player *Remove)
 
     getchar();
     fgets(name_remove, 30, stdin);
-    for (int i = 0; i < Remove->count_Items; i++)
+    for (int i = 0; i < player->count_Items; i++)
     {
-        if (strcmp(name_remove, Remove->items[i].Name) == 0)
+        if (strcmp(name_remove, player->items[i].Name) == 0)
         {
-            strcpy(Remove->items[i].Name, name);
-            Remove->items[i].quantity = 0;
+            strcpy(player->items[i].Name, name);
+            player->items[i].quantity = 0;
 
-            Remove->count_Items--;
+            player->count_Items--;
         }
     }
 }
@@ -78,7 +72,7 @@ int Display_Inventory(struct Player *player)
     printf("\n");
 }
 
-int Upgrade_Inventory(struct Player *Upgrade)
+int Upgrade_Inventory(struct Player *player)
 {
     int upgrade;
     char name[30];
@@ -90,11 +84,11 @@ int Upgrade_Inventory(struct Player *Upgrade)
     printf("Enter Upgrade : ");
     scanf("%d", &upgrade);
 
-    for (int i = 0; i < Upgrade->count_Items; i++)
+    for (int i = 0; i < player->count_Items; i++)
     {
-        if (strcmp(name, Upgrade->items[i].Name) == 0)
+        if (strcmp(name, player->items[i].Name) == 0)
         {
-            Upgrade->items[i].quantity += upgrade;
+            player->items[i].quantity += upgrade;
         }
     }
 }
@@ -143,8 +137,15 @@ int main()
 {
     struct Player Player_A;
     struct Player Player_B;
+    struct Player Player_C;
+    struct Player Player_D;
+    struct Player Player_E;
 
-    Initialize_Player(&Player_A, &Player_B);
+    Initialize_Player(&Player_A);
+    strcpy(Player_A.name, "player_A");
+
+    Initialize_Player(&Player_B);
+    strcpy(Player_B.name, "player_B");
 
     int menu;
 
