@@ -1,45 +1,146 @@
 #include <stdio.h>
 #include <string.h>
 
-struct Player
-{
-    char name[100];
-    int levels;
-    int count_Items; // Length of items
-    int Maximum_inventory_size;
-};
-
-struct Players
-{
-    struct Player player_A;
-    struct Player player_B;
-};
-
 struct Items
 {
     char Name[100];
     int quantity;
 };
 
-struct Player_inventory
+struct Player
 {
+    char name[100];
+    int levels;
+    int count_Items; // Length of items
+    int Maximum_inventory_size;
     struct Items items[100];
 };
 
-void Initialize_Player(struct Players *ply);
+void Initialize_Player(struct Player *Ply)
+{
+    Ply->count_Items = 0;
+    Ply->levels = 1;
+    Ply->Maximum_inventory_size = 10;
+    strcpy(Ply->name, "Player");
+}
+
+int Add_Item_Inventory(struct Player *player)
+{
+    printf("\n");
+    printf("Enter name : ");
+    getchar();
+    fgets(player->items[player->count_Items].Name, 100, stdin);
+
+    printf("Enter quantity : ");
+    scanf("%d", &player->items[player->count_Items].quantity);
+    printf("\n");
+
+    player->count_Items++;
+}
+
+int Remove_Item_From_Inventory(struct Player *Remove)
+{
+    char name_remove[30];
+    char name[30];
+
+    printf("Enter name : ");
+
+    getchar();
+    fgets(name_remove, 30, stdin);
+    for (int i = 0; i < Remove->count_Items; i++)
+    {
+        if (strcmp(name_remove, Remove->items[i].Name) == 0)
+            strcpy(Remove->items[i].Name, name);
+        Remove->items[i].quantity = 0;
+
+        Remove->count_Items--;
+    }
+}
+
+int Display_Inventory(struct Player *Display)
+{
+    printf("\n");
+    for (int i = 0; i <= Display->count_Items; i++)
+    {
+        if (Display->items[i].quantity != 0)
+        {
+            printf("%s", Display->items[i].Name);
+            printf("%d\n", Display->items[i].quantity);
+        }
+    }
+    printf("\n");
+}
+
+int Upgrade_Inventory(struct Player *Upgrade)
+{
+    int upgrade;
+    char name[30];
+
+    printf("Enter name that quantity you have to Upgrade : ");
+    getchar();
+    fgets(name, 30, stdin);
+
+    printf("Enter Upgrade : ");
+    scanf("%d", &upgrade);
+
+    for (int i = 0; i < Upgrade->count_Items; i++)
+    {
+        if (strcmp(name, Upgrade->items[i].Name) == 0)
+        {
+            Upgrade->items[i].quantity += upgrade;
+        }
+    }
+}
+
+int Trade_Items(struct Player *Player_A, struct Player *Player_B)
+{
+    char name1[100];
+    char name2[100];
+    char temp_name[100];
+    int temp_quantity = 0;
+
+    printf("\n");
+
+    printf("Enter Player A item name : ");
+    getchar();
+    fgets(name1, 100, stdin);
+
+    printf("Enter player B item name : ");
+    fgets(name2, 100, stdin);
+    printf("\n");
+
+    for (int j = 0; j < Player_A->count_Items; j++)
+    {
+        if (strcmp(Player_A->items[j].Name, name1) == 0)
+        {
+            for (int k = 0; k < Player_B->count_Items; k++)
+            {
+                if (strcmp(Player_B->items[k].Name, name2) == 0)
+                {
+                    strcpy(temp_name, Player_A->items[j].Name);
+                    strcpy(Player_A->items[j].Name, Player_B->items[k].Name);
+                    strcpy(Player_B->items[k].Name, temp_name);
+
+                    temp_quantity = Player_A->items[j].quantity;
+                    Player_A->items[j].quantity = Player_B->items[k].quantity;
+                    Player_B->items[k].quantity = temp_quantity;
+                    break;
+                }
+            }
+        }
+        break;
+    }
+}
 
 int main()
 {
-    struct Player_inventory PI;
+    struct Player Player_A;
+    struct Player Player_B;
 
-    struct Player player;
-
-    struct Players players;
-
-    Initialize_Player(&players);
+    Initialize_Player(&Player_A);
+    Initialize_Player(&Player_B);
 
     int menu;
-    int count = 0;
 
     printf("In menu which one you have to do, If don't enter '0'.\n");
     printf("1. Add Item To Inventory\n");
@@ -54,127 +155,92 @@ int main()
 
     while (menu != 0)
     {
-        if (menu == 1) // If menu is equal to 1
+        if (menu == 1)
         {
-            printf("\n");
-            printf("Enter name : ");
-            getchar();
-            fgets(PI.items[player.count_Items].Name, 100, stdin); // If true , take input name
+            char player;
 
-            printf("Enter quantity : ");
-            scanf("%d", &PI.items[player.count_Items].quantity); // If true , take input quantity
-            printf("\n");
-
-            player.count_Items++; // Add count Items by one
-        }
-        else if (menu == 2) // If menu is equal to 2
-        {
-            char name_remove[30];
-            char name[30];
-
-            printf("Enter name : ");
+            printf("Enter player name : ");
 
             getchar();
-            fgets(name_remove, 30, stdin); // If true , take input into name remove
+            scanf("%c", &player);
 
-            for (int i = 0; i < player.count_Items; i++)
+            if (player == 'A')
             {
-                if (strcmp(name_remove, PI.items[i].Name) == 0) // If name_ramove is equal to name of one index in items
-                {
-                    strcpy(PI.items[i].Name, name); // If true , remove that name and assign nul
-                    PI.items[i].quantity = 0;       // If true , Assign 0
-
-                    player.count_Items--; // If true , subtract by one
-                }
+                Add_Item_Inventory(&Player_A);
+            }
+            else if (player == 'B')
+            {
+                Add_Item_Inventory(&Player_B);
+            }
+            else
+            {
+                printf("Invalid name\n");
             }
         }
-        else if (menu == 3) // If menu is equal to 3
+        else if (menu == 2)
         {
-            printf("\n");
-            for (int i = 0; i <= player.count_Items; i++)
-            {
-                if (PI.items[i].quantity != 0) // If items os each index quantity is not eqaul to 0
-                {
-                    printf("%s", PI.items[i].Name);       // If true , print name
-                    printf("%d\n", PI.items[i].quantity); // If true , print quantity
-                }
-            }
-            printf("\n");
-        }
-        else if (menu == 4) // If manu is equal to 4
-        {
-            int Upgrade;
-            char name[30];
+            char Remove;
 
-            printf("Enter name that quantity you have to Upgrade : ");
+            printf("Enter player name : ");
+
             getchar();
-            fgets(name, 30, stdin); // Take input into name of that we have to upgrade quantity
+            scanf("%c", &Remove);
 
-            printf("Enter Upgrade : ");
-            scanf("%d", &Upgrade); // Take quantity that we have to upgrade
-
-            for (int i = 0; i < player.count_Items; i++)
+            if (Remove == 'A')
             {
-                if (strcmp(name, PI.items[i].Name) == 0) // If name is equal to, in items of any index
-                {
-                    PI.items[i].quantity += Upgrade; // If true , Add that upgrade in index quantity
-                }
+                Remove_Item_From_Inventory(&Player_A);
+            }
+            else if (Remove == 'B')
+            {
+                Remove_Item_From_Inventory(&Player_B);
+            }
+            else
+            {
+                printf("Invalid name\n");
             }
         }
-        else if (menu == 5) // If manu is equal to 5
+        else if (menu == 3)
         {
-            char name1[100];
-            char name2[100];
-            char temp_name[100];
-            int temp_quantity = 0;
+            char Display;
 
-            printf("\n");
+            printf("Enter player name : ");
 
-            printf("Enter first name that you have to exchange : ");
             getchar();
-            fgets(name1, 100, stdin); // Take input into name 1, the name we have to exchang with second name
+            scanf("%c", &Display);
 
-            printf("Enter second name that you have to exchange : ");
-            fgets(name2, 100, stdin); // Take input into name 2, the name we have to exchang with first name
-            printf("\n");
-
-            for (int j = 0; j < player.count_Items; j++)
+            if (Display == 'A')
             {
-                if (strcmp(PI.items[j].Name, name1) == 0) // If name 1 is equal to, in items name
-                {
-                    for (int k = 0; k < player.count_Items; k++)
-                    {
-                        if (strcmp(PI.items[k].Name, name2) == 0) // If true, If name 2 is equal to, in items name
-                        {
-                            strcpy(temp_name, PI.items[j].Name);        // If true , Assign name 1 into temp_name
-                            strcpy(PI.items[j].Name, PI.items[k].Name); // If true, Assing name 2 into name 1
-                            strcpy(PI.items[k].Name, temp_name);        // If true, Assign temp_name into name 2
-
-                            temp_quantity = PI.items[j].quantity;        // If true, Assign name 1 quantity into temp_quantity
-                            PI.items[j].quantity = PI.items[k].quantity; // If true, Assign name 2 quantity into name 1 quantity
-                            PI.items[k].quantity = temp_quantity;        // If true, Assign temp_quantity into name 2
-                            break;
-                        }
-                    }
-                }
-                break;
+                Display_Inventory(&Player_A);
             }
+            else if (Display == 'B')
+            {
+                Display_Inventory(&Player_B);
+            }
+        }
+        else if (menu == 4)
+        {
+            char Upgrade;
+
+            printf("Enter player name : ");
+
+            getchar();
+            scanf("%c", &Upgrade);
+
+            if (Upgrade == 'A')
+            {
+                Upgrade_Inventory(&Player_A);
+            }
+            else if (Upgrade == 'B')
+            {
+                Upgrade_Inventory(&Player_B);
+            }
+        }
+        else if (menu == 5)
+        {
+            Trade_Items(&Player_A, &Player_B);
         }
         printf("Enter number in menu : ");
         scanf("%d", &menu);
     }
     return 0;
-}
-
-void Initialize_Player(struct Players *ply) // Assigning Players Initial value
-{
-    ply->player_A.levels = 1;                  // Assigning levels 1
-    ply->player_A.Maximum_inventory_size = 10; // Assign size 10
-    ply->player_A.count_Items = 0;             // Assign count of items 0
-    strcpy(ply->player_A.name, "Player_A");    // Assign name 'Player_A'
-
-    ply->player_B.levels = 1;                  // Assigning levels 1
-    ply->player_B.Maximum_inventory_size = 10; // Assign size 10
-    ply->player_B.count_Items = 0;             // Assign count of items 0
-    strcpy(ply->player_B.name, "Player_B");    // Assign name 'Player_B'
 }
