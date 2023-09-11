@@ -16,22 +16,27 @@ struct Player
     struct Items items[100];
 };
 
-void Initialize_Player(struct Player *Ply)
+void Initialize_Player(struct Player *Player_A, struct Player *Player_B)
 {
-    Ply->count_Items = 0;
-    Ply->levels = 1;
-    Ply->Maximum_inventory_size = 10;
-    strcpy(Ply->name, "Player");
+    Player_A->count_Items = 0;
+    Player_A->levels = 1;
+    Player_A->Maximum_inventory_size = 10;
+    strcpy(Player_A->name, "Player_A");
+
+    Player_B->count_Items = 0;
+    Player_B->levels = 1;
+    Player_B->Maximum_inventory_size = 10;
+    strcpy(Player_B->name, "Player_B");
 }
 
 int Add_Item_Inventory(struct Player *player)
 {
     printf("\n");
-    printf("Enter name : ");
+    printf("Enter item name : ");
     getchar();
     fgets(player->items[player->count_Items].Name, 100, stdin);
 
-    printf("Enter quantity : ");
+    printf("Enter item quantity : ");
     scanf("%d", &player->items[player->count_Items].quantity);
     printf("\n");
 
@@ -50,22 +55,24 @@ int Remove_Item_From_Inventory(struct Player *Remove)
     for (int i = 0; i < Remove->count_Items; i++)
     {
         if (strcmp(name_remove, Remove->items[i].Name) == 0)
+        {
             strcpy(Remove->items[i].Name, name);
-        Remove->items[i].quantity = 0;
+            Remove->items[i].quantity = 0;
 
-        Remove->count_Items--;
+            Remove->count_Items--;
+        }
     }
 }
 
-int Display_Inventory(struct Player *Display)
+int Display_Inventory(struct Player *player)
 {
     printf("\n");
-    for (int i = 0; i <= Display->count_Items; i++)
+    for (int i = 0; i <= player->count_Items; i++)
     {
-        if (Display->items[i].quantity != 0)
+        if (player->items[i].quantity != 0)
         {
-            printf("%s", Display->items[i].Name);
-            printf("%d\n", Display->items[i].quantity);
+            printf("%s", player->items[i].Name);
+            printf("%d\n", player->items[i].quantity);
         }
     }
     printf("\n");
@@ -137,8 +144,7 @@ int main()
     struct Player Player_A;
     struct Player Player_B;
 
-    Initialize_Player(&Player_A);
-    Initialize_Player(&Player_B);
+    Initialize_Player(&Player_A, &Player_B);
 
     int menu;
 
