@@ -16,11 +16,13 @@ struct Player
     struct Items items[100];
 };
 
-void Initialize_Player(struct Player *Ply)
+void Initialize_Player(struct Player *Ply, char name[30])
 {
     Ply->count_Items = 0;
     Ply->levels = 1;
     Ply->Maximum_inventory_size = 10;
+
+    strcpy(Ply->name, name);
 }
 
 int Add_Item_Inventory(struct Player *player)
@@ -137,15 +139,9 @@ int main()
 {
     struct Player Player_A;
     struct Player Player_B;
-    struct Player Player_C;
-    struct Player Player_D;
-    struct Player Player_E;
 
-    Initialize_Player(&Player_A);
-    strcpy(Player_A.name, "player_A");
-
-    Initialize_Player(&Player_B);
-    strcpy(Player_B.name, "player_B");
+    Initialize_Player(&Player_A, "Player_A");
+    Initialize_Player(&Player_B, "Player_B");
 
     int menu;
 
