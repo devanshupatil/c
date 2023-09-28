@@ -3,8 +3,8 @@
 
 int main()
 {
-    FILE *ptr;
-    ptr = fopen("D:\\C_Programming\\c\\File\\sum.txt", "w+");
+    char name[] = {"Devanshu patil"};
 
-    fclose(ptr);
+    for (int i = 0; i < 14; i++)
+        printf("%c", name[i]);
 }

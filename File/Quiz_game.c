@@ -30,7 +30,7 @@ int main()
     int question = 0;
     struct Quizs quiz;
 
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 6; i++)
     {
         while (quiz.Questions[i].question[0] != 'Q')
         {
@@ -172,7 +172,7 @@ int main()
         }
     }
 
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 6; i++)
     {
         puts(quiz.Questions[i].question);
         puts(quiz.Questions[i].Option_A);
@@ -200,7 +200,7 @@ int main()
         printf("\n");
     }
 
-    printf("Your total score is  2 / %d\n", count);
+    printf("Your total score is  6 / %d\n", count);
     fclose(ptr);
 
     return 0;
