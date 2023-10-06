@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 struct Data
 {
@@ -7,7 +8,7 @@ struct Data
     float floats;
 };
 
-struct List_Item
+struct List_Items
 {
     struct Data data;
     int type;
@@ -20,81 +21,79 @@ struct List // Array
     int *ptr;
 };
 
-void CreateList() // Create arrya requ size and assign to pointer of size
+struct List_Items item[100];
+struct List list;
+
+void add()
 {
-}
-
-// grow list
-
-void getInput();
-void listSize();
-
-int EnterInteger()
-{
-    struct List_Item type[100];
-    printf("Enter integer value : ");
-    scanf("%d");
-}
-
-char EnterCharacter()
-{
-    struct List_Item type[100];
-    printf("Enter character value : ");
-    scanf("%c", &type[index_number].data.Character);
-}
-
-float EnterFloat()
-{
-    struct List_Item type[100];
-    printf("Enter float value : ");
-    scanf("%f", &type[index_number].data.floats);
-}
-
-int main()
-{
-    struct List_Item type[100];
-    printf("0. Exit  1. char  2. int  3. float\n");
-    printf("*****************************\n");
-    getInput();
-
-    while (type[index_number].type != 0)
-    {
-        if (index_number == Capacity)
-        {
-            listSize();
-        }
-        else if (type[index_number].type == 1)
-        {
-            EnterInteger();
-        }
-        else if (type[index_number].type == 2)
-        {
-            getchar();
-            EnterCharacter();
-        }
-        else if (type[index_number].type == 3)
-        {
-            EnterFloat();
-        }
-        else
-        {
-            printf("INVALID NUMBER!\n");
-        }
-
-        index_number++;
-        getInput();
-    }
-
-    return 0;
+    list.Capacity += 100;
+    list.ptr = (struct List_Items *)malloc(list.Capacity * sizeof(struct List_Items));
 }
 
 void getInput()
 {
-    struct List_Item type[100];
-    printf("Enter number of data type : ");
-    scanf("%d", &type[index_number].type);
+    printf("Enetr type : ");
+    scanf("%d", &item[list.index_number].type);
 }
 
-// void listSize()
-// {
-// }
+int typeInteger()
+{
+    printf("Enetr integer : ");
+    scanf("%d", &item[list.index_number].data.integer);
+}
+
+char typeCharacter()
+{
+
+    printf("Enetr Character: ");
+    scanf("%d", &item[list.index_number].data.Character);
+}
+
+float typeFloat()
+{
+
+    printf("Enetr float : ");
+    scanf("%d", &item[list.index_number].data.floats);
+}
+
+int main()
+{
+    list.index_number = 0;
+    list.Capacity = 1;
+
+    printf("0. Exit  1. Integer  2. character  3. Float\n");
+    printf("********************************************\n");
+    getInput();
+
+    while (list.index_number != list.Capacity)
+    {
+        if (item[list.index_number].type == 1)
+        {
+            typeInteger();
+        }
+        else if (item[list.index_number].type == 2)
+        {
+            typeCharacter();
+        }
+        else if (item[list.index_number].type == 3)
+        {
+        }
+        else if (item[list.index_number].type == 0)
+        {
+            break;
+        }
+
+        list.index_number++;
+
+        if (list.index_number == list.Capacity)
+        {
+            add();
+        }
+        else if (list.index_number != list.Capacity)
+        {
+            getInput();
+        }
+    }
+
+    return 0;
+}
