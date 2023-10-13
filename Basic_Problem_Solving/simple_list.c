@@ -16,7 +16,7 @@ struct List_Items
 
 struct List // Array
 {
-    int Capacity;
+    int Capacity; // Increasing
     int index_number;
     int *ptr;
 };
@@ -24,16 +24,17 @@ struct List // Array
 struct List_Items item[100];
 struct List list;
 
-void add()
-{
-    list.Capacity += 100;
-    list.ptr = (struct List_Items *)malloc(list.Capacity * sizeof(struct List_Items));
-}
-
 void getInput()
 {
     printf("Enetr type : ");
     scanf("%d", &item[list.index_number].type);
+}
+
+void add()
+{
+    list.Capacity += 5;
+    list.ptr = (struct List_Items *)malloc(list.Capacity * sizeof(struct List_Items));
+    getInput();
 }
 
 int typeInteger()
@@ -58,6 +59,7 @@ float typeFloat()
 
 int main()
 {
+    // create list, function
     list.index_number = 0;
     list.Capacity = 1;
 
