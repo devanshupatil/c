@@ -19,6 +19,8 @@ struct Quizs
     struct Question Questions[100];
 };
 
+// Function
+
 int main()
 {
     FILE *ptr;
@@ -28,7 +30,6 @@ int main()
     int breaks = 0;
     int Question = 0;
     int count = 0;
-    char Q = 49;
     int i = 0;
     int j = 0;
     struct Quizs quiz;
@@ -44,13 +45,8 @@ int main()
 
         if (quiz.Questions[i].question[0] == 'Q')
         {
-            quiz.Questions[i].question[1] = Q;
-            Q++;
             Question++;
-            quiz.Questions[i].question[2] = '.';
-            quiz.Questions[i].question[3] = ' ';
-
-            j = 4;
+            j = 0;
             while (j != 1000)
             {
                 if (ch == 125)
@@ -193,7 +189,8 @@ int main()
     for (int i = 0; i < Question; i++)
     {
         char Ans;
-        puts(quiz.Questions[i].question);
+
+        printf("%d. %s\n", i + 1, quiz.Questions[i].question);
         puts(quiz.Questions[i].Option_A);
         puts(quiz.Questions[i].Option_B);
         puts(quiz.Questions[i].Option_C);
