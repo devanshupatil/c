@@ -1,14 +1,10 @@
 #include <stdio.h>
 
-struct Stack_Item
-{
-    int size;
-    int max_capacity;
-};
 struct Stack
 {
-    struct Stack_Item items;
     int arr[10];
+    int size;
+    int max_capacity;
 };
 
 int main()
@@ -16,10 +12,10 @@ int main()
     struct Stack stack;
     int Option;
 
-    stack.items.max_capacity = 10;
-    stack.items.size = 0;
+    stack.max_capacity = 3;
+    stack.size = 0;
 
-    while (stack.items.size != stack.items.max_capacity)
+    while (1)
     {
         printf("1. Exit, 2. Push, 3. Pop, 4. Peek\n");
         printf("Enter number of option: ");
@@ -31,23 +27,34 @@ int main()
         }
         else if (Option == 2)
         {
-            printf("Entre value: ");
-            scanf("%d", &stack.arr[stack.items.size]);
-            stack.items.size++;
+            if (stack.size != stack.max_capacity)
+            {
+                printf("Entre value: ");
+                scanf("%d", &stack.arr[stack.size]);
+                stack.size++;
+            }
+            else
+            {
+                printf("Not more space to push!\n");
+            }
         }
         else if (Option == 3)
         {
-            stack.items.size--;
-            printf("Successfully done!\n");
+            if (0 <= stack.size)
+            {
+                stack.size--;
+                printf("Successfully done!\n");
+            }
+            else
+            {
+                printf("Not more space to pop!\n");
+            }
         }
         else if (Option == 4)
         {
-            if (stack.items.size != 0)
+            if (stack.size >= 0)
             {
-                for (int i = 0; i < stack.items.size; i++)
-                {
-                    printf("%d = %d\n", i, stack.arr[i]);
-                }
+                printf("%d\n", stack.arr[stack.size - 1]);
             }
             else
             {
