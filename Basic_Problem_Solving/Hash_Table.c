@@ -4,13 +4,13 @@
 struct Table_Item
 {
     char Key[100];
-    char value[100]; // same
+    char value[100];
 };
 struct Hash_Table
 {
     struct Table_Item items[10]; // value strore in this index
     int Capacity;
-    int count; //
+    int count;
 };
 
 int main()
@@ -54,7 +54,6 @@ int main()
         }
         else if (Option == 3)
         {
-            // chack if key exist are not
             big_integer = 0; // Assign 0
 
             for (int i = 0; key[i] != '\n'; i++) //
@@ -66,7 +65,9 @@ int main()
 
             if (strcmp(hash_table.items[small_integer].Key, key) == 0 && strcmp(hash_table.items[small_integer].value, value) == 0) // If item small_integer index value is equal to key value
             {
-                printf("Exist\n"); // If true, print Exist
+                printf("Exist\n");                              // If true, print Exist
+                puts(hash_table.items[hash_table.count].Key);   // If true, print key
+                puts(hash_table.items[hash_table.count].value); // If true, print value
             }
             else
             {
