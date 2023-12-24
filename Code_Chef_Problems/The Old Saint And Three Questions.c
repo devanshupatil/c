@@ -19,18 +19,14 @@ int main(void)
             scanf("%d", &B[j]);
         }
 
-        int Yes = 0;
-        int No = 0;
+        int Correct_ans = 0;
+        int hero_ans = 0;
 
         for (int k = 0; k < 3; k++)
         {
             if (A[k] == 1)
             {
-                Yes++;
-            }
-            else
-            {
-                No++;
+                Correct_ans++;
             }
         }
 
@@ -38,15 +34,11 @@ int main(void)
         {
             if (B[l] == 1)
             {
-                Yes++;
-            }
-            else
-            {
-                No++;
+                hero_ans++;
             }
         }
 
-        if (Yes > No)
+        if (Correct_ans == hero_ans)
         {
             printf("Pass\n");
         }
