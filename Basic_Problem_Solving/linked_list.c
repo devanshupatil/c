@@ -3,78 +3,147 @@
 
 struct linked_list
 {
-    int data; // node Increase
-    struct linked_list *next;
+    struct Node *Strat;
+    struct Node *End;
 };
-typedef struct LinkedList *node; // Define node as pointer of data type struct LinkedList
 
-node Create_Node()
+struct Node
 {
+    int data;
+    struct Node *next;
+};
+
+struct linked_list Initialize()
+{
+
     struct linked_list list;
-    node *temp;
-    temp = (node)malloc(sizeof(struct linked_list));
-    list.next = NULL;
-    temp = list.next;
-    return temp;
+    struct Node *Node_Pointer = malloc(sizeof(struct Node));
+
+    printf("Enter value: ");
+    scanf("%d", &Node_Pointer->data);
+
+    Node_Pointer->next = NULL;
+    list.Strat = Node_Pointer;
+    list.End = Node_Pointer;
+    return list;
 }
 
-node Add_Node()
+void Add_Node(struct linked_list *list)
 {
-    struct linked_list list;
+
     int value;
-    node head;
-    node temp, p;
+
+    struct Node *Node_Pointer = (struct Node *)malloc(sizeof(struct Node));
 
     printf("Enter value: ");
     scanf("%d", &value);
 
-    temp = Create_Node();
-    list.data = value;
-    temp = list.data;
+    Node_Pointer->data = value;
+    Node_Pointer->next = NULL;
+    list->End->next = Node_Pointer;
+    list->End = Node_Pointer;
+}
 
-    if (head == NULL)
-    {
-        head = temp;
-    }
-    else
-    {
-        p = head;
-
-        while (list.next != NULL)
-        {
-            p = list.next;
-        }
-
-        p = temp;
-    }
-    return head;
+void Remove_Node()
+{
 }
 
 int main()
 {
-    struct linked_list list;
+    struct linked_list LL;
 
     int type;
-
+    int count = 0;
+    int Num = 0;
+    struct Node *Previous_pointer;
+    struct Node *Next_pointer;
+    int remove;
     while (1)
     {
-        printf("1. Add node  2. Exit \n");
-        printf("Enter the  number: ");
+        printf("1. Initialize  2. Add Node  3. Remove Node  4. Print Node  5. Exit\n");
+        printf("Enter Number: ");
         scanf("%d", &type);
 
         if (type == 1)
         {
-            Create_Node();
-            Add_Node();
+            count++;
+            LL = Initialize();
         }
         else if (type == 2)
+        {
+            count++;
+            Add_Node(&LL);
+        }
+        else if (type == 3)
+        {
+            struct Node *temp;
+            printf("Enter count of element you have to remove: ");
+            scanf("%d", &remove);
+
+            if (count >= remove)
+            {
+                temp = LL.Strat;
+                Num++;
+
+                for (int i = 0; i < remove; i++)
+                {
+
+                    temp = temp->next;
+                    Num++;
+
+                    if (Num == (remove - 1))
+                    {
+                        Previous_pointer = temp;
+                    }
+                    else if (Num == (remove + 1))
+                    {
+                        Next_pointer = temp;
+                        Previous_pointer->next = Next_pointer;
+                        break;
+                    }
+                    else if (Num == count)
+                    {
+                        Next_pointer = temp;
+                        Previous_pointer->next = NULL;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                printf("Invalid!\n");
+            }
+        }
+        else if (type == 4)
+        {
+            struct Node *temp;
+            printf("%d\n", LL.Strat->data);
+            if (LL.Strat->next != NULL)
+            {
+                temp = LL.Strat->next;
+
+                while (1)
+                {
+                    printf("%d\n", temp->data);
+
+                    temp = temp->next;
+
+                    if (temp == NULL)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        else if (type == 5)
         {
             return 0;
         }
         else
         {
-            printf("Invalid!");
+            printf("Invalid!\n");
         }
     }
+
     return 0;
 }
