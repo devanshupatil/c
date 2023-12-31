@@ -77,6 +77,7 @@ int main()
         else if (type == 3)
         {
             struct Node *temp;
+            struct Node *Free;
             printf("Enter count of element you have to remove: ");
             scanf("%d", &remove);
 
@@ -95,16 +96,22 @@ int main()
                     {
                         Previous_pointer = temp;
                     }
+                    else if (Num == remove)
+                    {
+                        Free = temp;
+                    }
                     else if (Num == (remove + 1))
                     {
                         Next_pointer = temp;
                         Previous_pointer->next = Next_pointer;
+                        free(Free);
                         break;
                     }
                     else if (Num == count)
                     {
                         Next_pointer = temp;
                         Previous_pointer->next = NULL;
+                        free(Free);
                         break;
                     }
                 }
