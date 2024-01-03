@@ -10,47 +10,42 @@ struct Tree_Node
 
 struct Tree
 {
-    struct Tree_Node Root;
+    struct Tree_Node *Root;
 };
 
-void Create_Node(struct Tree *T)
+int count = 0;
+void Create_Node(struct Tree *tree, struct Tree_Node *parent, char position)
 {
 
     int value;
-    int decision;
-    int count = 0;
+
+    struct Tree_Node *Pointer = (struct Tree_Node *)malloc(sizeof(struct Tree_Node));
+    printf("Enter value: ");
+    scanf("%d", &Pointer->data);
 
     count++;
 
     if (count == 1)
     {
-        struct Tree_Node *Pointer = (struct Tree_Node *)malloc(sizeof(struct Tree_Node));
-        printf("Enter value: ");
-        scanf("%d", &Pointer->data);
-        T->Root.data = Pointer->data;
+        tree->Root = Pointer;
     }
 
-    printf("YES of 1 or NO of 0 or No one of 00 only\n");
-    printf("You what to strore data in lifet node: ");
-    scanf("%d", &decision);
+    getchar();
+    printf("If you want to add in lifet: ");
+    scanf("%s", &position);
 
-    printf("Enter value: ");
-    scanf("%d", &value);
-
-    struct Tree_Node *Pointer = (struct Tree_Node *)malloc(sizeof(struct Tree_Node));
-
-    if (decision == 1)
+    if (position == 'Y' || position == 'y')
     {
-        Pointer->data = value;
-        T->Root.Left = Pointer;
+        Create_Node(tree, Pointer, 'L');
     }
-    else if (decision == 0)
+
+    getchar();
+    printf("If you want to add in right: ");
+    scanf("%s", &position);
+
+    if (position == 'Y' || position == 'y')
     {
-        Pointer->data = value;
-        T->Root.Right = Pointer;
-    }
-    else if (decision == 00)
-    {
+        Create_Node(tree, Pointer, 'L');
     }
 }
 
@@ -68,7 +63,7 @@ int main()
 
         if (type == 1)
         {
-            Create_Node(&tree);
+            Create_Node(&tree, NULL, 'r');
         }
         else if (type == 2)
         {
