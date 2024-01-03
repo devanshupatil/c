@@ -13,39 +13,51 @@ struct Tree
     struct Tree_Node *Root;
 };
 
-int count = 0;
 void Create_Node(struct Tree *tree, struct Tree_Node *parent, char position)
 {
 
     int value;
+    char Is_left_requared;
+    char Is_right_requared;
 
     struct Tree_Node *Pointer = (struct Tree_Node *)malloc(sizeof(struct Tree_Node));
     printf("Enter value: ");
     scanf("%d", &Pointer->data);
 
-    count++;
-
-    if (count == 1)
+    if (parent == NULL)
     {
         tree->Root = Pointer;
     }
 
-    getchar();
-    printf("If you want to add in lifet: ");
-    scanf("%s", &position);
+    if (parent != NULL)
+    {
+        if (position == 'L')
+        {
+            parent->Left = Pointer;
+        }
 
-    if (position == 'Y' || position == 'y')
+        if (position == 'R')
+        {
+            parent->Right = Pointer;
+        }
+    }
+
+    printf("If you want to add in left: ");
+    getchar();
+    scanf("%c", &Is_left_requared);
+
+    if (Is_left_requared == 'Y' || Is_left_requared == 'y')
     {
         Create_Node(tree, Pointer, 'L');
     }
 
-    getchar();
     printf("If you want to add in right: ");
-    scanf("%s", &position);
+    getchar();
+    scanf("%c", &Is_right_requared);
 
-    if (position == 'Y' || position == 'y')
+    if (Is_right_requared == 'Y' || Is_right_requared == 'y')
     {
-        Create_Node(tree, Pointer, 'L');
+        Create_Node(tree, Pointer, 'R');
     }
 }
 
@@ -63,7 +75,7 @@ int main()
 
         if (type == 1)
         {
-            Create_Node(&tree, NULL, 'r');
+            Create_Node(&tree, NULL, 'T');
         }
         else if (type == 2)
         {
