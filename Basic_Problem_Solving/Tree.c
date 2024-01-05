@@ -13,6 +13,8 @@ struct Tree
     struct Tree_Node *Root;
 };
 
+int left_count = 0;
+int right_count = 0;
 void Create_Node(struct Tree *tree, struct Tree_Node *parent, char position)
 {
 
@@ -49,6 +51,7 @@ void Create_Node(struct Tree *tree, struct Tree_Node *parent, char position)
     if (Is_left_requared == 'Y' || Is_left_requared == 'y')
     {
         Create_Node(tree, Pointer, 'L');
+        left_count++;
     }
 
     printf("If you want to add in right: ");
@@ -58,6 +61,26 @@ void Create_Node(struct Tree *tree, struct Tree_Node *parent, char position)
     if (Is_right_requared == 'Y' || Is_right_requared == 'y')
     {
         Create_Node(tree, Pointer, 'R');
+        right_count++;
+    }
+}
+
+void Print_Node(struct Tree *t) // PreOrder
+{
+    struct Tree_Node *node;
+    node = t->Root;
+    printf("Root :- %d\n", node->data);
+    printf("\n*************************\n");
+    for (int i = 0; i < left_count; i++)
+    {
+        printf("Left :- %d\n", node->Left->data);
+        node = node->Left;
+    }
+    printf("\n*************************\n");
+    for (int i = 0; i < right_count; i++)
+    {
+        printf("Right :-%d\n", node->Right->data);
+        node = node->Right;
     }
 }
 
@@ -79,6 +102,7 @@ int main()
         }
         else if (type == 2)
         {
+            Print_Node(&tree);
         }
         else if (type == 3)
         {
