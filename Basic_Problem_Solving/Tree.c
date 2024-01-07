@@ -13,8 +13,6 @@ struct Tree
     struct Tree_Node *Root;
 };
 
-int left_count = 0;
-int right_count = 0;
 void Create_Node(struct Tree *tree, struct Tree_Node *parent, char position)
 {
 
@@ -25,6 +23,9 @@ void Create_Node(struct Tree *tree, struct Tree_Node *parent, char position)
     struct Tree_Node *Pointer = (struct Tree_Node *)malloc(sizeof(struct Tree_Node));
     printf("Enter value: ");
     scanf("%d", &Pointer->data);
+
+    Pointer->Left = NULL;
+    Pointer->Right = NULL;
 
     if (parent == NULL)
     {
@@ -51,7 +52,6 @@ void Create_Node(struct Tree *tree, struct Tree_Node *parent, char position)
     if (Is_left_requared == 'Y' || Is_left_requared == 'y')
     {
         Create_Node(tree, Pointer, 'L');
-        left_count++;
     }
 
     printf("If you want to add in right: ");
@@ -61,26 +61,21 @@ void Create_Node(struct Tree *tree, struct Tree_Node *parent, char position)
     if (Is_right_requared == 'Y' || Is_right_requared == 'y')
     {
         Create_Node(tree, Pointer, 'R');
-        right_count++;
     }
 }
 
-void Print_Node(struct Tree *t) // PreOrder
+void Print_Node(struct Tree_Node *node) // PreOrder
 {
-    struct Tree_Node *node;
-    node = t->Root;
-    printf("Root :- %d\n", node->data);
-    printf("\n*************************\n");
-    for (int i = 0; i < left_count; i++)
+    printf("%d\n", node->data);
+
+    if (node->Left != NULL)
     {
-        printf("Left :- %d\n", node->Left->data);
-        node = node->Left;
+        Print_Node(node->Left);
     }
-    printf("\n*************************\n");
-    for (int i = 0; i < right_count; i++)
+
+    if (node->Right != NULL)
     {
-        printf("Right :-%d\n", node->Right->data);
-        node = node->Right;
+        Print_Node(node->Right);
     }
 }
 
@@ -102,7 +97,7 @@ int main()
         }
         else if (type == 2)
         {
-            Print_Node(&tree);
+            Print_Node(tree.Root);
         }
         else if (type == 3)
         {
