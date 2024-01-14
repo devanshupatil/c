@@ -13,23 +13,23 @@ int main(void)
         int count = 0;
         int temp = N;
 
-        if (N == 0)
-        {
-            printf("0\n");
-        }
         for (int j = 1; j <= N; j++)
         {
             temp = temp - K;
             count++;
-            if (j == N)
-            {
-                printf("%d\n", count);
-            }
-            if (temp < 0)
-            {
-                printf("-1\n");
-                break;
-            }
+        }
+
+        if (N == 0)
+        {
+            printf("0\n");
+        }
+        else if (temp < 0)
+        {
+            printf("-1\n");
+        }
+        else
+        {
+            printf("%d\n", count);
         }
     }
     return 0;
