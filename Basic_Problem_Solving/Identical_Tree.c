@@ -22,7 +22,7 @@ void *Newnode(int data)
     pointer->Left = NULL;                                                          // assign NULL into pointer left
     pointer->Right = NULL;                                                         // assign NULL into pointer left
 }
-int Indentical_Tree(struct New_Node *a, struct New_Node *b)
+int Identical_Tree(struct New_Node *a, struct New_Node *b)
 {
     if (a == NULL && b == NULL) // If a and b is equal to NULL
     {
@@ -31,7 +31,7 @@ int Indentical_Tree(struct New_Node *a, struct New_Node *b)
 
     if (a != NULL && b != NULL) // If a and b is not equal to NULL
     {
-        return (a->data == b->data && Indentical_Tree(a->Left, b->Left) && Indentical_Tree(a->Right, b->Right)); // If true, return Comparison of both trees
+        return (a->data == b->data && Identical_Tree(a->Left, b->Left) && Identical_Tree(a->Right, b->Right)); // If true, return Comparison of both trees
     }
 }
 
@@ -51,7 +51,7 @@ int main()
 
     /*Function call and pass first tree and second tree*/
 
-    if (Indentical_Tree(tree.Root1, tree.Root2)) // If both tree are same in data
+    if (Identical_Tree(tree.Root1, tree.Root2)) // If both tree are same in data
     {
         printf("Both tree are identical!"); // If true, print 'Both tree are identical!'
     }
