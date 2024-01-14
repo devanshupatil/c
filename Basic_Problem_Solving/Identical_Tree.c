@@ -26,11 +26,20 @@ int Identical_Tree(struct New_Node *a, struct New_Node *b)
 {
     if (a == NULL && b == NULL) // If a and b is equal to NULL
     {
+        /*return 1 is use for, The indicates that an error or unexpected
+            condition occurred during the execution of the function or program.
+            the return value signals to the calling code that something went
+            wrong and may require further handling*/
+
         return 1; // If true, return 1
     }
 
     if (a != NULL && b != NULL) // If a and b is not equal to NULL
     {
+        /*We are Compare first root tree data and second tree root data and one
+        by one, We are compare first tree lift data and second tree lest
+        data, Then same as first tree Right data and second tree right data */
+
         return (a->data == b->data && Identical_Tree(a->Left, b->Left) && Identical_Tree(a->Right, b->Right)); // If true, return Comparison of both trees
     }
 }
