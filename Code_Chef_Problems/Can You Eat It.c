@@ -13,24 +13,24 @@ int main(void)
         int count = 0;
         int temp = N;
 
-        for (int j = 1; j <= N; j++)
+        while (temp > 0) // If temp value is more than zero
         {
-            temp = temp - K;
-            count++;
+            temp = temp - K; // If true, Assign temp Subtracted value with k into temp
+            count++;         // Add one in count
         }
 
-        if (N == 0)
+        if (N == 0) // If N is equal to 0
         {
-            printf("0\n");
+            printf("0\n"); // If true, print '0'
         }
-        else if (temp < 0)
+        else if (temp < 0) // If temp is less than 0
         {
-            printf("-1\n");
+            printf("-1\n"); // If true, print '-1'
         }
         else
         {
-            printf("%d\n", count);
+            printf("%d\n", count); // If false, print count value
         }
     }
-    return 0;
+    return 0; // Exit the program
 }
