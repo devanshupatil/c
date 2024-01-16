@@ -32,21 +32,21 @@ int main()
         }
         for (int k = 0; k < N; k++)
         {
-            if (S[k] == 'A' && S[k + 1] == 'A' || S[k] == 'A' && S[k + 1] == 'B' && S[k - 1] == 'A')
+            if (S[k] == 'A' && S[k + 1] == 'A' || S[k] == 'A' && S[k + 1] == 'B' && S[k - 1] == 'A') // If string of kth index value is 'A' and kth next index value is 'A' or  string of kth index value is 'A' and kth next index value is 'B' and kth previous index value is 'A'
             {
-                Alice++;
+                Alice++; // If true, Add by one
             }
-            else if (S[k - 1] == 'A' && S[k] == 'A')
+            else if (S[k - 1] == 'A' && S[k] == 'A') // If string of kth previous index value is 'A' and kth index value is 'A'
             {
-                Alice++;
+                Alice++; // If true, Add by one
             }
-            else if (S[k] == 'B' && S[k + 1] == 'B' && S[k - 1] == 'B')
+            else if (S[k] == 'B' && S[k + 1] == 'B' && S[k - 1] == 'B') // If string of kth index value is 'B' and kth next index value is 'B' and kth previous index value is 'B'
             {
-                Bob++;
+                Bob++; // If true, Add by one
             }
-            else if (S[k - 1] == 'B' && S[k] == 'B')
+            else if (S[k - 1] == 'B' && S[k] == 'B') // If string of kth previous index value is 'B' and kth index value is 'B'
             {
-                Bob++;
+                Bob++; // If true, Add by one
             }
         }
 
