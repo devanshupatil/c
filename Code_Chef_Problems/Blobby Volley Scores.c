@@ -26,27 +26,26 @@ int main()
          score increases by 1, and they remain as the server for the next turn.But if the receiver wins
          the point in this turn, their score does not increase. But they become the server in the next turn.
         */
-        if (S[0] == 'A' && S[1] == 'B')
-        {
-            Alice++;
-        }
+
+        char current_server = 'A';
+
         for (int k = 0; k < N; k++)
         {
-            if (S[k] == 'A' && S[k + 1] == 'A' || S[k] == 'A' && S[k + 1] == 'B' && S[k - 1] == 'A') // If string of kth index value is 'A' and kth next index value is 'A' or  string of kth index value is 'A' and kth next index value is 'B' and kth previous index value is 'A'
+            if (current_server == S[k]) // If current server value is equal to string of kth index value
             {
-                Alice++; // If true, Add by one
+                current_server = S[k];     // Assign string of kth index value into current server
+                if (current_server == 'A') // If current server id equal to A
+                {
+                    Alice++; // If true, add by one
+                }
+                else
+                {
+                    Bob++; // If false, add by one
+                }
             }
-            else if (S[k - 1] == 'A' && S[k] == 'A') // If string of kth previous index value is 'A' and kth index value is 'A'
+            else
             {
-                Alice++; // If true, Add by one
-            }
-            else if (S[k] == 'B' && S[k + 1] == 'B' && S[k - 1] == 'B') // If string of kth index value is 'B' and kth next index value is 'B' and kth previous index value is 'B'
-            {
-                Bob++; // If true, Add by one
-            }
-            else if (S[k - 1] == 'B' && S[k] == 'B') // If string of kth previous index value is 'B' and kth index value is 'B'
-            {
-                Bob++; // If true, Add by one
+                current_server = S[k]; // Assign string of kth index value into current server
             }
         }
 
