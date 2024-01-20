@@ -37,7 +37,6 @@ int main(void)
         {
             printf("Yes\n"); // If false, print 'Yes'
         }
-
-        return 0; // Exit the program
     }
+    return 0; // Exit the program
 }
