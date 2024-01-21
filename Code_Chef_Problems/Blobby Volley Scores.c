@@ -16,9 +16,9 @@ int main()
         int Alice = 0;
         int Bob = 0;
 
+        getchar();
         for (int j = 0; j < N; j++)
         {
-            getchar();
             scanf("%c", &S[j]);
         }
         /*
