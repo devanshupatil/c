@@ -12,8 +12,7 @@ int main(void)
         int A[N];        // The arrival timings
         int D[N];        // The departure timings
         int Temp[N * 2]; // The Temperature array take for number of plane timing is same then the value assign 0
-        int count = 0;
-        int temp = 0;
+        int Max_count = 0;
 
         for (int j = 0; j < N; j++)
         {
@@ -35,52 +34,31 @@ int main(void)
             X += 2;
         }
 
-        /*Check the same value in 'Temp' array, And it's same assign 0*/
+        /*Check the number of runways neet to Airport*/
         for (int l = 0; l < N * 2; l++)
         {
-            for (int h = l + 1; h < N * 2; h++)
+            int temp = 1; // Assign 1 into temp
+            for (int n = l + 1; n < N * 2; n++)
             {
-                if (Temp[l] == Temp[h])
+                /*If number are same add one into temp and Temp index of 'l' & 'n' value is not equal to -0*/
+                if (Temp[l] == Temp[n])
                 {
-                    if (Temp[l] != 0 && Temp[h])
+                    if (Temp[l] != -0 && Temp[n] != -0)
                     {
-                        temp = Temp[l];
-                        Temp[l] = 0;
-                        Temp[h] = 0;
+                        temp++;
+                        Temp[n] = -0;
                     }
                 }
-                if (temp == Temp[h])
+
+                if (temp > Max_count) // If temp is mora than Max_count value
                 {
-                    Temp[h] = 0;
+                    Max_count = temp; // Assign temp value into Max_count
                 }
             }
         }
 
-        /*The count of Zero's*/
-        for (int g = 0; g < N * 2; g++)
-        {
-            if (Temp[g] == 0)
-            {
-                count++;
-            }
-        }
-
-        /*Check the arrival timings and departure timings, If both timings match two another plane timing */
-        for (int a = 0; a < N; a++)
-        {
-            for (int b = a + 1; b < N; b++)
-            {
-                if (A[a] == A[b] && D[a] == D[b])
-                {
-                    count -= 2;
-                }
-            }
-        }
-
-        if (count == 0) // If count is equal to 0
-        {
-            count++; // If true, add by one
-        }
-        printf("count = %d\n", count); // print the count value
+        printf("%d\n", Max_count); // Print Max_count value
     }
+
+    return 0; // Exit the program
 }
