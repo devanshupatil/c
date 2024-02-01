@@ -3,26 +3,26 @@
 /*Two Binary pointer roots*/
 struct Tree
 {
-    struct New_Node *Root1;
-    struct New_Node *Root2;
+    struct Node *Root1;
+    struct Node *Root2;
 };
 
 /*The node pointer of left child and right child and that's data*/
-struct New_Node
+struct Node
 {
     int data;
-    struct New_Node *Right;
-    struct New_Node *Left;
+    struct Node *Right;
+    struct Node *Left;
 };
 
 void *Newnode(int data)
 {
-    struct New_Node *pointer = (struct New_Node *)malloc(sizeof(struct New_Node)); // Create new node to allocates
+    struct Node *pointer = (struct Node *)malloc(sizeof(struct Node)); // Create new node to allocates
     pointer->data = data;                                                          // assign data into pointer dada
     pointer->Left = NULL;                                                          // assign NULL into pointer left
     pointer->Right = NULL;                                                         // assign NULL into pointer left
 }
-int Identical_Tree(struct New_Node *a, struct New_Node *b)
+int Identical_Tree(struct Node *a, struct Node *b)
 {
     if (a == NULL && b == NULL) // If a and b is equal to NULL
     {
