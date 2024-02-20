@@ -12,7 +12,7 @@ int main(void)
     {
         scanf("%d %d", &X, &Y);
 
-        while (X != Y) // If X is not equal to Y
+        while (X)
         {
             if (X > Y) // If X is more than Y
             {
@@ -23,9 +23,7 @@ int main(void)
             }
             else
             {
-                temp = X;    // IF false, assign X value into temp
-                X = (Y - X); // Assign Y - X value into X
-                Y = temp;    // Assign temp value into Y
+                Y = Y % X; // Assign Y modulo X into Y
             }
         }
         printf("%d\n", Y); // Print Y value
