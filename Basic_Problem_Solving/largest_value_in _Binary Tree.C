@@ -96,5 +96,7 @@ int main()
         printf("%d\n", arr[i]);
     }
 
+    free(Newnode(0));
+
     return 0; // Exit the program
 }
