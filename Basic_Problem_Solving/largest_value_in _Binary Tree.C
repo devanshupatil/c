@@ -15,6 +15,17 @@ struct Node
     struct Node *Left;
 };
 
+int Max(int L_depth, int R_depth)
+{
+    if (L_depth > R_depth) // If left node depth is more than right node depth
+    {
+        return (L_depth); // If true, Add one into left node depth and return
+    }
+    else
+    {
+        return (R_depth); // If true, Add one into right node depth and return
+    }
+}
 int Max_depth(struct Node *node)
 {
     if (node == NULL) // If tree is empty
@@ -29,17 +40,6 @@ int Max_depth(struct Node *node)
     }
 }
 
-int Max(int L_depth, int R_depth)
-{
-    if (L_depth > R_depth) // If left node depth is more than right node depth
-    {
-        return (L_depth); // If true, Add one into left node depth and return
-    }
-    else
-    {
-        return (R_depth); // If true, Add one into right node depth and return
-    }
-}
 int Max_depth_modifide(struct Node *node, int *arr, int level)
 {
     // get index for array
@@ -96,7 +96,14 @@ int main()
         printf("%d\n", arr[i]);
     }
 
-    free(Newnode(0));
+    // Free the address of tree node
+
+    free(tree.Root);
+    free(tree.Root->Left);
+    free(tree.Root->Right);
+    free(tree.Root->Left->Right);
+    free(tree.Root->Right->Right);
+    free(tree.Root->Right->Right->Right);
 
     return 0; // Exit the program
 }
