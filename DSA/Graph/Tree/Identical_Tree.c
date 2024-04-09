@@ -18,9 +18,9 @@ struct Node
 void *Newnode(int data)
 {
     struct Node *pointer = (struct Node *)malloc(sizeof(struct Node)); // Create new node to allocates
-    pointer->data = data;                                                          // assign data into pointer dada
-    pointer->Left = NULL;                                                          // assign NULL into pointer left
-    pointer->Right = NULL;                                                         // assign NULL into pointer left
+    pointer->data = data;                                              // assign data into pointer dada
+    pointer->Left = NULL;                                              // assign NULL into pointer left
+    pointer->Right = NULL;                                             // assign NULL into pointer left
 }
 int Identical_Tree(struct Node *a, struct Node *b)
 {
