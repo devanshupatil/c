@@ -17,7 +17,7 @@ void *New_node(int key)
     Pointer->key = key;
 }
 
-void Is_Connected(struct Array *graph, int Value_one, int Value_two)
+int Is_Connected(struct Array *graph, int Value_one, int Value_two)
 {
     for (int i = 0; i < 6; i++)
     {
