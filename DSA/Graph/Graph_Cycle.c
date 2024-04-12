@@ -25,7 +25,7 @@ void *New_node(int key)
     Pointer->key = key;
 }
 
-void DFS(struct Array *graph, int *View_Arr, char *string, int view_Index, int graph_index, int *child_arr, int child_index)
+int DFS(struct Array *graph, int *View_Arr, char *string, int view_Index, int graph_index, int *child_arr, int child_index)
 {
 
     string[graph->node[graph_index]->key] = 'T'; // 0 = T
