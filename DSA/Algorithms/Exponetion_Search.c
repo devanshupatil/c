@@ -42,7 +42,11 @@ int Exponetion_search(int arr[], int element, int i, int size)
     }
     if (size < i)
     {
-        Binear_search(arr, element, i / 2, 0, size);
+        int temp = Binear_search(arr, element, i / 2, 0, size);
+        if (temp == 0)
+        {
+            return 0;
+        }
     }
     if (size > i)
     {
